@@ -1,27 +1,28 @@
 package newshelf;
 
-
 public class NewSelection {
 
-	// TODO: Complete this method 
-	/**
-	 * 
-	 * @param o object
-	 * returns if o is not a book, returns empty string, if Comic, returns title, of Fiction
-	 * returns name, and if TextBook, returns subject.
-	 */
-	public static String getAgeOrTitle(Object o) {
-		
-		if (o instanceof Book) {
-			
-		}
-		return null;
-	}
+  
+    public static String getAgeOrTitle(Object o) {
+        if (o instanceof IBook book) {
+            if (book instanceof TextBook textBook) {
+                return textBook.subject();
+            } else if (book instanceof Fiction fiction) {
+                return fiction.name();
+            } else if (book instanceof Comic comic) {
+                return comic.title();
+            }
+        }
+        return "";
+    }
 
-	public static void main(String[] args) {
-		
-		// TODO: Write a test code here and execute and text.
-		TextBook t = new TextBook();
-		
-	}
+    public static void main(String[] args) {
+        TextBook textBook = new TextBook("Social Studies");
+        Fiction fiction = new Fiction("Anthropologies");
+        Comic comic = new Comic("He-Man", 15);
+
+        System.out.println("TextBook subject: " + getAgeOrTitle(textBook)); 
+        System.out.println("Fiction name: " + getAgeOrTitle(fiction));    
+        System.out.println("Comic title: " + getAgeOrTitle(comic));       
+    }
 }
